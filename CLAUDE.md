@@ -5,13 +5,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 项目概述
 
 vnpy_ctp 是 VeighNa (vn.py) 量化交易框架的 CTP 期货接口网关，基于上期技术 CTP 期货版 6.7.11 API 封装
+
 通过 pybind11 将 C++ CTP API 封装为 Python 扩展模块，提供行情（MdApi）和交易（TdApi）两套接口
 
 ## 包管理规范
 
-本项目使用 **uv** 管理虚拟环境和依赖。所有依赖安装必须通过 `uv sync` 完成
-需要新增依赖时，应将其添加到 `pyproject.toml` 的对应位置
-除非需要编译项目 C/C++ 扩展, **禁止使用 `uv pip install`** 直接安装依赖
+- 本项目使用 **uv** 管理虚拟环境和依赖。所有依赖安装必须通过 `uv sync` 完成
+- 需要新增依赖时，应将其添加到 `pyproject.toml` 的对应位置
+- 除非需要编译项目 C/C++ 扩展, **禁止使用 `uv pip install`** 直接安装依赖
 
 ## 构建与安装
 
@@ -23,7 +24,9 @@ uv sync
 uv pip install -e . --no-build-isolation
 ```
 
-构建系统使用 **setuptools + pybind11**，配置在 `setup.py` 和 `pyproject.toml`。构建依赖：setuptools、pybind11 >= 2.13.6。
+构建系统使用 **setuptools + pybind11**，配置在 `setup.py` 和 `pyproject.toml`。
+
+构建依赖：setuptools、pybind11 >= 2.13.6。
 
 ## 代码检查
 
@@ -72,7 +75,13 @@ CTP 官方动态库
 
 ### 核心回调机制
 
-C++ 层使用任务队列（TaskQueue）实现异步回调：CTP 回调 → 封装为 Task 推入线程安全队列 → 工作线程取出并转换为 Python dict → 调用 Python 端对应的 `on*` 回调方法。编码转换在 C++ 层完成（GBK → UTF-8）。
+C++ 层使用任务队列（TaskQueue）实现异步回调：
+1. CTP 回调
+2. 封装为 Task 推入线程安全队列
+3. 工作线程取出并转换为 Python dict
+4. 调用 Python 端对应的 `on*` 回调方法
+
+编码转换在 C++ 层完成（GBK → UTF-8）
 
 ### 平台
 
