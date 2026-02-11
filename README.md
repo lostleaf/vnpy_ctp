@@ -6,7 +6,7 @@
 
 <p align="center">
     <img src ="https://img.shields.io/badge/version-6.7.11.2-blueviolet.svg"/>
-    <img src ="https://img.shields.io/badge/platform-windows|linux|macos-yellow.svg"/>
+    <img src ="https://img.shields.io/badge/platform-linux-yellow.svg"/>
     <img src ="https://img.shields.io/badge/python-3.10|3.11|3.12|3.13-blue.svg" />
     <img src ="https://img.shields.io/github/license/vnpy/vnpy.svg?color=orange"/>
 </p>
@@ -31,12 +31,12 @@ pip install vnpy_ctp
 pip install .
 ```
 
-使用源代码安装时需要进行C++编译，因此在执行上述命令之前请确保已经安装了【Visual Studio（Windows）】、【GCC（Linux）】、【XCode（Mac）】编译器。
+使用源代码安装时需要进行C++编译，因此在执行上述命令之前请确保已经安装了【GCC】编译器。
 
 如果需要以**开发模式**安装到当前Python环境，可以使用下述命令：
 
 ```
-pip install -e . --no-build-isolation --config-settings=build-dir=.\vnpy_ctp\api
+pip install -e . --no-build-isolation --config-settings=build-dir=./vnpy_ctp/api
 ```
 
 ## 使用
@@ -69,20 +69,3 @@ if __name__ == "__main__":
     main()
 ```
 
-## Mac系统支持
-
-由于新版本CTP的Mac系统API项目结构发生了较大变化，改为了使用framework目录的结构，因此无法再直接从PyPI下载预编译好的wheel二进制包进行安装。
-
-用户需要克隆（或下载）本仓库的源代码到本地后自行编译安装，具体命令如下：
-
-```
-git clone https://github.com/vnpy/vnpy_ctp.git
-
-cd vnpy_ctp
-
-pip3 install .
-```
-
-相关注意事项如下：
-
-源码编译需要依赖XCode开发工具中的C++编译器，请务必先安装好。

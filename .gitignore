@@ -26,10 +26,12 @@
 
 # Python
 *.pyc
+vnpy_ctp/api/vnctp*.so
 dist/
 build/
 vnpy_ctp.egg-info/
 __pycache__/
+.venv/
 
 # Visual Studio
 .vs/
