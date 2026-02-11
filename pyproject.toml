@@ -4,57 +4,21 @@ version = "6.7.11.2"
 description = "CTP gateway for vn.py quant trading framework."
 readme = "README.md"
 license = {text = "MIT"}
-authors = [{name = "Xiaoyou Chen", email = "xiaoyou.chen@mail.vnpy.com"}]
-classifiers = [
-    "Development Status :: 5 - Production/Stable",
-    "Operating System :: Microsoft :: Windows",
-    "Operating System :: POSIX :: Linux",
-    "Operating System :: MacOS",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Topic :: Office/Business :: Financial :: Investment",
-    "Programming Language :: Python :: Implementation :: CPython",
-    "License :: OSI Approved :: MIT License",
-    "Natural Language :: Chinese (Simplified)",
-]
 requires-python = ">=3.10"
 dependencies = ["vnpy>=3.0.0"]
-keywords = ["quant", "quantitative", "investment", "trading", "algotrading", "ctp"]
 
-[project.urls]
-"Homepage" = "https://www.vnpy.com"
-"Documentation" = "https://www.vnpy.com/docs"
-"Changes" = "https://github.com/vnpy/vnpy_ctp/blob/master/CHANGELOG.md"
-"Source" = "https://github.com/vnpy/vnpy_ctp/"
-"Forum" = "https://www.vnpy.com/forum"
+[dependency-groups]
+dev = ["setuptools", "pybind11>=2.13.6", "ruff", "mypy", "pytest"]
 
 [build-system]
-requires = [
-    "meson-python>=0.17.1",
-    "meson>=1.7.0",
-    "pybind11>=2.13.6",
-]
-build-backend = "mesonpy"
+requires = ["setuptools", "pybind11>=2.13.6"]
+build-backend = "setuptools.build_meta"
 
-[tool.mesonpy]
-args = ['--vsenv']
+[tool.setuptools.packages.find]
+include = ["vnpy_ctp*"]
 
-[tool.mesonpy.distribution]
-include = [
-    "**/*.dll",
-    "**/*.so",
-    "**/*.pyd",
-    "**/*.h",
-    "**/*.cpp",
-    "**/*.lib",
-    "**/*.a",
-    "**/*.framework/**",  # 添加Mac框架文件夹支持
-]
-
-preserve-path = true 
+[tool.setuptools.package-data]
+"vnpy_ctp.api" = ["*.so"]
 
 [tool.ruff]
 target-version = "py310"
