@@ -1,8 +1,4 @@
 //系统
-#ifdef WIN32
-#include "stdafx.h"
-#endif
-
 #include "vnctp.h"
 #include "pybind11/pybind11.h"
 #include "ctp/ThostFtdcMdApi.h"
